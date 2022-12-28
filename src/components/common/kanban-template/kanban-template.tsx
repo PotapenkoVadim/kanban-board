@@ -13,16 +13,6 @@ export default function KanbanTemplate(): JSX.Element {
 
       <div className={cx('kanban__content')}>
         <KanbanTemplateColumn />
-        <KanbanTemplateColumn />
-        <KanbanTemplateColumn />
-        <KanbanTemplateColumn />
-        <KanbanTemplateColumn />
-        <KanbanTemplateColumn />
-        <KanbanTemplateColumn />
-        <KanbanTemplateColumn />
-        <KanbanTemplateColumn />
-        <KanbanTemplateColumn />
-        <KanbanTemplateColumn />
 
         <div className={cx('kanban__emptyslot')} />
       </div>

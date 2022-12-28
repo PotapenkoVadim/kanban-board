@@ -10,36 +10,6 @@ export default function KanbanTemplateColumn(): JSX.Element {
       <div className={cx('kanban__column-header')}>Header</div>
       <div className={cx('kanban__column-content')}>
         <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
       </div>
     </div>
   );

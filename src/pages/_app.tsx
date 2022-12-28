@@ -1,8 +1,10 @@
 import '@/styles/globals.scss';
+import { Provider } from 'react-redux';
 import type { AppProps } from 'next/app';
 import { Mukta } from '@next/font/google';
 import Head from 'next/head';
 import favicon from '@/public/favicon.ico';
+import { store } from '@/store/index';
 
 const muktaFont = Mukta({
   variable: '--mukta-font',
@@ -28,7 +30,10 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
           rel='shortcut icon'
           href={favicon.src} />
       </Head>
-      <Component {...pageProps} />
+
+      <Provider store={store}>
+        <Component {...pageProps} />
+      </Provider>
     </>
   );
 }
