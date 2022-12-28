@@ -8,7 +8,7 @@ import { initSagaActions } from '@/store/init/saga-actions';
 
 export default function Home(): JSX.Element {
   const dispatch = useDispatch();
-  const isInit = useAppSelector((state) => state.init);
+  const { init: isInit, label } = useAppSelector((state) => state);
 
   useEffect(() => {
     dispatch({ type: initSagaActions.INIT });
@@ -19,7 +19,7 @@ export default function Home(): JSX.Element {
       <Container>
         {isInit && <p>Store Works!</p>}
 
-        <KanbanTemplate />
+        <KanbanTemplate labels={label.items} />
       </Container>
     </Layout>
   );

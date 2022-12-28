@@ -1,3 +1,10 @@
 export const configuration = {
-  logoName: 'Shaurma.'
+  logoName: 'Shaurma.',
+  defaultLabels: [
+    {
+      id: 1,
+      title: 'Friends',
+      userIDs: []
+    }
+  ]
 };

@@ -1,11 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { LabelState } from './state';
 
 const labelSlice = createSlice({
   name: 'label',
-  initialState: {},
+  initialState: new LabelState(),
   reducers: {
     test() {
-      console.log('test')
+      console.log('test');
     }
   }
 });

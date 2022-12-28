@@ -11,7 +11,7 @@ export const store = configureStore({
     init: initReducer,
     label: labelReducer
   },
-  middleware: (gDM) => gDM()
+  middleware: (gDM) => gDM({ serializableCheck: false })
     .concat(sagaMiddleware)
 });
 

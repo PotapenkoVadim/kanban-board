@@ -1,18 +1,27 @@
+import { Label } from '@/model/label';
 import classNames from 'classnames/bind';
 import styles from './kanban-template.module.scss';
 import KanbanTemplateColumn from './_column';
+import KanbanTemplateHeader from './_header';
 
 const cx = classNames.bind(styles);
 
-export default function KanbanTemplate(): JSX.Element {
+export default function KanbanTemplate({
+  labels
+}: {
+  labels: Array<Label>;
+}): JSX.Element {
   return (
     <div className={cx('kanban')}>
-      <div className={cx('kanban__header')}>
-        <h1 className={cx('kanban__title')}>Kanban Board</h1>
-      </div>
+      <KanbanTemplateHeader />
 
       <div className={cx('kanban__content')}>
-        <KanbanTemplateColumn />
+        {labels?.length > 0 &&
+          labels.map((item) => (
+            <KanbanTemplateColumn
+              key={item.id}
+              label={item} />
+          ))}
 
         <div className={cx('kanban__emptyslot')} />
       </div>

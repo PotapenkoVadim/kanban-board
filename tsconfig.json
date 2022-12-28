@@ -14,14 +14,10 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "strictPropertyInitialization": false,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
-      "@/pages": ["src/pages/*"],
-      "@/styles": ["src/styles/*"],
-      "@/store": ["src/store/*"],
-      "@/public": ["src/public"],
-      "@/hooks": ["src/hooks"]
+      "@/*": ["./src/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
