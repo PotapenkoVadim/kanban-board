@@ -1,0 +1,8 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.user { padding: 10px 5px; border-bottom: 1px solid $light; @include flex-align-center; gap: 12px;
+  &__avatar { max-width: 42px; max-height: 42px; border-radius: 50%; }
+  &__avatar, &__actions { flex: 1; }
+  &__details { flex: 2; font-size: 0.9rem; font-weight: 700; }
+}
