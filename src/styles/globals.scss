@@ -2,4 +2,4 @@
 @import './mixins';
 
 * { box-sizing: border-box; padding: 0; margin: 0; }
-body { font-family: var(--mukta-font); font-weight: 400; font-size: $font; }
+body { font-family: var(--mukta-font); font-weight: 400; font-size: $font; color: $black; }
