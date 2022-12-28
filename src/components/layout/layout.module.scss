@@ -1,0 +1,6 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.layout {
+  &__header { @include flex-align-center; min-height: 50px; background-color: $black; color: $white; }
+}
