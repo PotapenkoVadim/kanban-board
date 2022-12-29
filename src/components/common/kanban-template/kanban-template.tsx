@@ -7,13 +7,15 @@ import KanbanTemplateHeader from './_header';
 const cx = classNames.bind(styles);
 
 export default function KanbanTemplate({
-  stages
+  stages,
+  addStage
 }: {
   stages: Array<Stage>;
+  addStage: () => void;
 }): JSX.Element {
   return (
     <div className={cx('kanban')}>
-      <KanbanTemplateHeader />
+      <KanbanTemplateHeader handleClick={addStage} />
 
       <div className={cx('kanban__content')}>
         {stages?.length > 0 &&

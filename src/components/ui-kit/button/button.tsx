@@ -8,14 +8,21 @@ const cx = classNames.bind(styles);
 export default function Button({
   children,
   variant,
-  className
+  onClick,
+  className,
+  ...props
 }: {
   children: ReactNode;
   variant: ButtonVariant;
+  onClick?: () => void;
   className?: string;
 }): JSX.Element {
   return (
-    <button className={cx(['button', `button__${variant}`, className])}>
+    <button
+      onClick={onClick}
+      className={cx(['button', `button__${variant}`, className])}
+      {...props}
+    >
       {children}
     </button>
   );

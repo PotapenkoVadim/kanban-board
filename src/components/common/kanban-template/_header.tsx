@@ -7,14 +7,24 @@ import DropDown from '@/components/ui-kit/drop-down/drop-down';
 
 const cx = classNames.bind(styles);
 
-const menu = [
-  {
-    id: 1,
-    node: <Button variant={ButtonVariant.LINK}>Create new stage</Button>
-  }
-];
+export default function KanbanTemplateHeader({
+  handleClick
+}: {
+  handleClick: () => void;
+}): JSX.Element {
+  const menu = [
+    {
+      id: 1,
+      node: (
+        <Button
+          onClick={handleClick}
+          variant={ButtonVariant.LINK}>
+          Add new stage
+        </Button>
+      )
+    }
+  ];
 
-export default function KanbanTemplateHeader(): JSX.Element {
   return (
     <div className={cx('kanban__header')}>
       <h1 className={cx('kanban__title')}>Kanban Board</h1>
