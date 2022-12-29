@@ -4,6 +4,7 @@ import stageReducer from './stage';
 import initReducer from './init';
 import stageModalReducer from './modals/stage';
 import confirmationModalReducer from './modals/confirmation';
+import userModalReducer from './modals/user';
 import userReducer from './user';
 import { sagas } from './sagas';
 
@@ -13,9 +14,10 @@ export const store = configureStore({
   reducer: {
     init: initReducer,
     stage: stageReducer,
+    user: userReducer,
     stageModal: stageModalReducer,
     confirmationModal: confirmationModalReducer,
-    user: userReducer
+    userModal: userModalReducer
   },
   middleware: (gDM) => gDM({ serializableCheck: false })
     .concat(sagaMiddleware)

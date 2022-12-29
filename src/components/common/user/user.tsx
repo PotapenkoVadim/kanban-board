@@ -16,7 +16,7 @@ export default function User({ user }: { user: UserModel }): JSX.Element {
         alt='person' />
 
       <div className={cx('user__details')}>
-        <div>{user.fullName}</div>
+        <div>{user.getFullName()}</div>
       </div>
 
       <div className={cx('user__actions')}>Actions</div>

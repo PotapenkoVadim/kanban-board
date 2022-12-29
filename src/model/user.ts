@@ -5,7 +5,7 @@ export class UserModel {
 
   public surname: string;
 
-  public get fullName(): string {
+  public getFullName?(): string {
     return `${this.surname} ${this.name}`;
   }
 
