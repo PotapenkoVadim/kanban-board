@@ -8,16 +8,16 @@ import DropDown from '@/components/ui-kit/drop-down/drop-down';
 const cx = classNames.bind(styles);
 
 export default function KanbanTemplateHeader({
-  handleClick
+  handleAction
 }: {
-  handleClick: () => void;
+  handleAction: () => void;
 }): JSX.Element {
   const menu = [
     {
       id: 1,
       node: (
         <Button
-          onClick={handleClick}
+          onClick={() => handleAction()}
           variant={ButtonVariant.LINK}>
           Add new stage
         </Button>

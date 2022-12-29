@@ -32,8 +32,6 @@ export default function FormStage({
     validationSchema
   });
 
-  console.log(formik);
-
   return (
     <form
       className={cx('stage')}

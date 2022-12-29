@@ -26,6 +26,7 @@ export default function FormTextField({
   return (
     <div className={cx(['form__control', className])}>
       <input
+        value={value}
         className={cx({
           form__field: true,
           form__field_active: !!value

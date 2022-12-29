@@ -3,7 +3,8 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const initialState: StageModalState = {
   isOpen: false,
-  title: ''
+  title: '',
+  stage: null
 };
 
 const stageModalSlice = createSlice({

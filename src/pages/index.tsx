@@ -7,15 +7,17 @@ import { useAppSelector } from '@/hooks';
 import { initSagaActions } from '@/store/init/saga-actions';
 import StageModal from '@/components/modals/stage/stage';
 import { open as openStageModal } from '@/store/modals/stage';
+import { Stage } from '@/model/stage';
 
 export default function Home(): JSX.Element {
   const dispatch = useDispatch();
   const { init: isInit, stage } = useAppSelector((state) => state);
 
-  const openAddStage = (): void => {
+  const openManageStage = (stage?: Stage): void => {
     dispatch(
       openStageModal({
-        title: 'Add new stage'
+        title: stage ? 'Update stage' : 'Add new stage',
+        stage
       })
     );
   };
@@ -30,7 +32,7 @@ export default function Home(): JSX.Element {
         {isInit && <p>Store Works!</p>}
 
         <KanbanTemplate
-          addStage={openAddStage}
+          manageStage={openManageStage}
           stages={stage.items} />
       </Container>
 
