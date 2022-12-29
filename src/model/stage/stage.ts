@@ -3,7 +3,7 @@ export class Stage {
 
   public title: string;
 
-  public userIDs: Array<number>;
+  public userIDs: Array<string>;
 
   constructor(model: Partial<Stage> = {}) {
     Object.assign(this, model);

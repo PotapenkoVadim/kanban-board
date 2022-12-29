@@ -4,7 +4,14 @@ export const configuration = {
     {
       id: 'initial',
       title: 'Friends',
-      userIDs: []
+      userIDs: ['initial']
+    }
+  ],
+  defaultUsers: [
+    {
+      id: 'initial',
+      name: 'Lev',
+      surname: 'Landau'
     }
   ]
 };
