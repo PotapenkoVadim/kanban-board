@@ -4,7 +4,9 @@ import Modal from '@/components/ui-kit/modal/modal';
 import { close } from '@/store/modals/stage';
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from '@/hooks';
-import { useEffect } from 'react';
+import FormStage from '@/components/forms/stage/stage';
+import { Stage } from '@/model/stage';
+import { addStage } from '@/store/stage';
 
 const cx = classNames.bind(styles);
 
@@ -12,9 +14,12 @@ export default function StageModal(): JSX.Element {
   const dispatch = useDispatch();
   const { isOpen, title } = useAppSelector((state) => state.stageModal);
 
-  useEffect(() => console.log('click123', isOpen), [isOpen]);
-
   const closeModal = (): void => {
+    dispatch(close());
+  };
+
+  const handleSubmit = (data: Stage): void => {
+    dispatch(addStage(data));
     dispatch(close());
   };
 
@@ -23,7 +28,9 @@ export default function StageModal(): JSX.Element {
       title={title}
       onClose={closeModal}
       isOpen={isOpen}>
-      <div className={cx('stage')}>Stage modal</div>
+      <div className={cx('stage')}>
+        <FormStage onSubmit={handleSubmit} />
+      </div>
     </Modal>
   );
 }

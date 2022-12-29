@@ -1,4 +1,9 @@
-import { ReactNode } from 'react';
+import {
+  ButtonHTMLAttributes,
+  DetailedHTMLProps,
+  InputHTMLAttributes,
+  ReactNode
+} from 'react';
 import classNames from 'classnames/bind';
 import styles from './button.module.scss';
 import { ButtonVariant } from '@/enums';
@@ -16,7 +21,10 @@ export default function Button({
   variant: ButtonVariant;
   onClick?: () => void;
   className?: string;
-}): JSX.Element {
+} & DetailedHTMLProps<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  HTMLButtonElement
+>): JSX.Element {
   return (
     <button
       onClick={onClick}

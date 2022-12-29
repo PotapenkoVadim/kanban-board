@@ -23,8 +23,12 @@ export default function Modal({
 
   return (
     <ReactModal
-      style={{ overlay: { zIndex: 10 } }}
-      isOpen={isOpen}>
+      style={{
+        overlay: { zIndex: 10 },
+        content: { maxWidth: '650px', margin: '0 auto' }
+      }}
+      isOpen={isOpen}
+    >
       <div className={cx('modal__content')}>
         <div className={cx('modal__header')}>
           <span className={cx('modal__title')}>{title}</span>
