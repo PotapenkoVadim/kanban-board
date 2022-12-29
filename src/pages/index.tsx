@@ -17,7 +17,7 @@ export default function Home(): JSX.Element {
     dispatch(
       openStageModal({
         title: stage ? 'Update stage' : 'Add new stage',
-        stage
+        stage: stage ? stage : new Stage()
       })
     );
   };

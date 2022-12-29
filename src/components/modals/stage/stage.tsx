@@ -7,25 +7,12 @@ import { useAppSelector } from '@/hooks';
 import FormStage from '@/components/forms/stage/stage';
 import { Stage } from '@/model/stage';
 import { addStage } from '@/store/stage';
-import { useEffect, useState } from 'react';
 
 const cx = classNames.bind(styles);
 
 export default function StageModal(): JSX.Element {
   const dispatch = useDispatch();
-  const {
-    isOpen,
-    title,
-    stage: updatedStage
-  } = useAppSelector((state) => state.stageModal);
-
-  const [stage, setStage] = useState(new Stage());
-
-  useEffect(() => {
-    if (updatedStage) {
-      setStage(updatedStage);
-    }
-  }, [updatedStage]);
+  const { isOpen, title, stage } = useAppSelector((state) => state.stageModal);
 
   const closeModal = (): void => {
     dispatch(close());
@@ -43,8 +30,9 @@ export default function StageModal(): JSX.Element {
       isOpen={isOpen}>
       <div className={cx('stage')}>
         <FormStage
-          stage={stage}
-          onSubmit={handleSubmit} />
+          stage={stage ? stage : new Stage()}
+          onSubmit={handleSubmit}
+        />
       </div>
     </Modal>
   );
