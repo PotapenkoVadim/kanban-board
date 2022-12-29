@@ -3,7 +3,7 @@ import FormTextField from '@/components/ui-kit/form/_text-field';
 import classNames from 'classnames/bind';
 import { ButtonVariant } from '@/enums';
 import styles from './stage.module.scss';
-import { Stage } from '@/model/stage';
+import { StageModel } from '@/model/stage';
 import { StageSchema } from '@/forms';
 import { useFormik } from 'formik';
 import { generateID } from '@/utils';
@@ -14,8 +14,8 @@ export default function FormStage({
   stage,
   onSubmit
 }: {
-  stage?: Stage | null;
-  onSubmit: (data: Stage) => void;
+  stage?: StageModel | null;
+  onSubmit: (data: StageModel) => void;
 }): JSX.Element {
   const initialValues = new StageSchema(stage);
   const validationSchema = StageSchema.getValidationSchema();
@@ -25,7 +25,7 @@ export default function FormStage({
     onSubmit: (values) => onSubmit(
       stage
         ? { ...stage, ...values }
-        : new Stage({ ...values, id: generateID() })
+        : new StageModel({ ...values, id: generateID() })
     ),
     validationSchema
   });

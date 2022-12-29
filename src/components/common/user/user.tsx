@@ -3,7 +3,7 @@ import styles from './user.module.scss';
 import Image from 'next/image';
 
 import personImage from '@/public/person.jpg';
-import { User as UserModel } from '@/model/user';
+import { UserModel } from '@/model/user';
 
 const cx = classNames.bind(styles);
 

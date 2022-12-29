@@ -1,4 +1,4 @@
-export class User {
+export class UserModel {
   public id: string;
 
   public name: string;
@@ -9,7 +9,7 @@ export class User {
     return `${this.surname} ${this.name}`;
   }
 
-  constructor(model: Partial<User> = {}) {
+  constructor(model: Partial<UserModel> = {}) {
     Object.assign(this, model);
   }
 }

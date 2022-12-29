@@ -1,4 +1,4 @@
-import { Stage } from '@/model/stage';
+import { StageModel } from '@/model/stage';
 import classNames from 'classnames/bind';
 import styles from './kanban-template.module.scss';
 import KanbanTemplateColumn from './_column';
@@ -11,9 +11,9 @@ export default function KanbanTemplate({
   manageStage,
   removeStage
 }: {
-  stages: Array<Stage>;
-  manageStage: (stage?: Stage) => void;
-  removeStage: (stage: Stage) => void;
+  stages: Array<StageModel>;
+  manageStage: (stage?: StageModel) => void;
+  removeStage: (stage: StageModel) => void;
 }): JSX.Element {
   return (
     <div className={cx('kanban')}>

@@ -1,5 +1,5 @@
-import { Stage } from '@/model/stage';
+import { StageModel } from '@/model/stage';
 
 export default interface StageState {
-  items: Array<Stage>;
+  items: Array<StageModel>;
 }

@@ -1,10 +1,10 @@
 import * as Yup from 'yup';
-import { Stage } from '@/model/stage';
+import { StageModel } from '@/model/stage';
 
 export class StageSchema {
   public title: string;
 
-  constructor(stage?: Stage | null) {
+  constructor(stage?: StageModel | null) {
     this.title = stage?.title ?? '';
   }
 

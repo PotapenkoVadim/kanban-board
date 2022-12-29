@@ -5,7 +5,7 @@ import { close } from '@/store/modals/stage';
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from '@/hooks';
 import FormStage from '@/components/forms/stage/stage';
-import { Stage } from '@/model/stage';
+import { StageModel } from '@/model/stage';
 import { addStage, updateStage } from '@/store/stage';
 
 const cx = classNames.bind(styles);
@@ -18,7 +18,7 @@ export default function StageModal(): JSX.Element {
     dispatch(close());
   };
 
-  const handleSubmit = (data: Stage): void => {
+  const handleSubmit = (data: StageModel): void => {
     dispatch(stage ? updateStage(data) : addStage(data));
     dispatch(close());
   };

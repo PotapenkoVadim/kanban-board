@@ -1,6 +1,6 @@
-import { Stage } from '@/model/stage';
+import { StageModel } from '@/model/stage';
 import ModalState from './modal-state';
 
 export default interface StageModalState extends ModalState {
-  stage?: Stage | null;
+  stage?: StageModel | null;
 }

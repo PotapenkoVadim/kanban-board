@@ -1,14 +1,14 @@
 import classNames from 'classnames/bind';
 import styles from './kanban-template.module.scss';
 import User from '@/components/common/user/user';
-import { Stage } from '@/model/stage';
+import { StageModel } from '@/model/stage';
 import Button from '@/components/ui-kit/button/button';
 import Icon from '@/components/ui-kit/icon/icon';
 import { ButtonVariant, IconVariant } from '@/enums';
 import DropDown from '@/components/ui-kit/drop-down/drop-down';
 import { useAppSelector } from '@/hooks';
 import { useEffect, useState } from 'react';
-import { User as UserModel } from '@/model/user';
+import { UserModel } from '@/model/user';
 
 const cx = classNames.bind(styles);
 
@@ -17,9 +17,9 @@ export default function KanbanTemplateColumn({
   handleUpdateAction,
   handleRemoveAction
 }: {
-  stage: Stage;
-  handleUpdateAction: (stage: Stage) => void;
-  handleRemoveAction: (stage: Stage) => void;
+  stage: StageModel;
+  handleUpdateAction: (stage: StageModel) => void;
+  handleRemoveAction: (stage: StageModel) => void;
 }): JSX.Element {
   const { items: initialUsers } = useAppSelector((state) => state.user);
 

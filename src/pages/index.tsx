@@ -11,7 +11,7 @@ import {
   open as openConfirmationModal,
   close as closeConfirmationModal
 } from '@/store/modals/confirmation';
-import { Stage } from '@/model/stage';
+import { StageModel } from '@/model/stage';
 import ConfirmationModal from '@/components/modals/confirmation/confirmation';
 import { removeStage as removeStageFromStore } from '@/store/stage';
 
@@ -19,7 +19,7 @@ export default function Home(): JSX.Element {
   const dispatch = useDispatch();
   const { init: isInit, stage } = useAppSelector((state) => state);
 
-  const openManageStage = (stage?: Stage): void => {
+  const openManageStage = (stage?: StageModel): void => {
     dispatch(
       openStageModal({
         title: stage ? 'Update stage' : 'Add new stage',
@@ -28,7 +28,7 @@ export default function Home(): JSX.Element {
     );
   };
 
-  const openRemoveStage = (stage: Stage): void => {
+  const openRemoveStage = (stage: StageModel): void => {
     dispatch(
       openConfirmationModal({
         title: 'You want to delete the stage?',
@@ -37,7 +37,7 @@ export default function Home(): JSX.Element {
     );
   };
 
-  const removeStage = (stage: Stage): void => {
+  const removeStage = (stage: StageModel): void => {
     dispatch(removeStageFromStore(stage));
     dispatch(closeConfirmationModal());
   };

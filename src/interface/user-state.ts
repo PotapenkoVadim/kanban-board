@@ -1,5 +1,5 @@
-import { User } from '@/model/user';
+import { UserModel } from '@/model/user';
 
 export default interface UserState {
-  items: Array<User>;
+  items: Array<UserModel>;
 }
