@@ -14,7 +14,7 @@ export default function FormStage({
   stage,
   onSubmit
 }: {
-  stage?: Stage;
+  stage?: Stage | null;
   onSubmit: (data: Stage) => void;
 }): JSX.Element {
   const initialValues = new StageSchema(stage);
@@ -23,11 +23,9 @@ export default function FormStage({
   const formik = useFormik({
     initialValues,
     onSubmit: (values) => onSubmit(
-      new Stage({
-        ...values,
-        id: generateID(),
-        title: values.title
-      })
+      stage
+        ? { ...stage, ...values }
+        : new Stage({ ...values, id: generateID() })
     ),
     validationSchema
   });
@@ -50,7 +48,7 @@ export default function FormStage({
         className={cx('stage__button')}
         variant={ButtonVariant.PRIMARY}
       >
-        Add
+        {stage ? 'Update' : 'Add'}
       </Button>
     </form>
   );

@@ -7,7 +7,13 @@ import { useAppSelector } from '@/hooks';
 import { initSagaActions } from '@/store/init/saga-actions';
 import StageModal from '@/components/modals/stage/stage';
 import { open as openStageModal } from '@/store/modals/stage';
+import {
+  open as openConfirmationModal,
+  close as closeConfirmationModal
+} from '@/store/modals/confirmation';
 import { Stage } from '@/model/stage';
+import ConfirmationModal from '@/components/modals/confirmation/confirmation';
+import { removeStage as removeStageFromStore } from '@/store/stage';
 
 export default function Home(): JSX.Element {
   const dispatch = useDispatch();
@@ -17,9 +23,23 @@ export default function Home(): JSX.Element {
     dispatch(
       openStageModal({
         title: stage ? 'Update stage' : 'Add new stage',
-        stage: stage ? stage : new Stage()
+        stage: stage
       })
     );
+  };
+
+  const openRemoveStage = (stage: Stage): void => {
+    dispatch(
+      openConfirmationModal({
+        title: 'You want to delete the stage?',
+        acceptAction: () => removeStage(stage)
+      })
+    );
+  };
+
+  const removeStage = (stage: Stage): void => {
+    dispatch(removeStageFromStore(stage));
+    dispatch(closeConfirmationModal());
   };
 
   useEffect(() => {
@@ -32,11 +52,14 @@ export default function Home(): JSX.Element {
         {isInit && <p>Store Works!</p>}
 
         <KanbanTemplate
+          removeStage={openRemoveStage}
           manageStage={openManageStage}
-          stages={stage.items} />
+          stages={stage.items}
+        />
       </Container>
 
       <StageModal />
+      <ConfirmationModal />
     </Layout>
   );
 }

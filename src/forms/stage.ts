@@ -4,7 +4,7 @@ import { Stage } from '@/model/stage';
 export class StageSchema {
   public title: string;
 
-  constructor(stage?: Stage) {
+  constructor(stage?: Stage | null) {
     this.title = stage?.title ?? '';
   }
 

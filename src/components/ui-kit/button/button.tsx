@@ -1,9 +1,4 @@
-import {
-  ButtonHTMLAttributes,
-  DetailedHTMLProps,
-  InputHTMLAttributes,
-  ReactNode
-} from 'react';
+import { ButtonHTMLAttributes, DetailedHTMLProps, ReactNode } from 'react';
 import classNames from 'classnames/bind';
 import styles from './button.module.scss';
 import { ButtonVariant } from '@/enums';

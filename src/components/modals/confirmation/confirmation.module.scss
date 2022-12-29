@@ -1,0 +1,6 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.confirmation { margin: 35px 0; padding: 0 15px; display: flex; justify-content: space-around;
+  &__button { flex: 1; padding: 15px 20px; }
+}

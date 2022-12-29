@@ -8,10 +8,12 @@ const cx = classNames.bind(styles);
 
 export default function KanbanTemplate({
   stages,
-  manageStage
+  manageStage,
+  removeStage
 }: {
   stages: Array<Stage>;
   manageStage: (stage?: Stage) => void;
+  removeStage: (stage: Stage) => void;
 }): JSX.Element {
   return (
     <div className={cx('kanban')}>
@@ -21,7 +23,8 @@ export default function KanbanTemplate({
         {stages?.length > 0 &&
           stages.map((item) => (
             <KanbanTemplateColumn
-              handleAction={manageStage}
+              handleRemoveAction={removeStage}
+              handleUpdateAction={manageStage}
               key={item.id}
               stage={item}
             />

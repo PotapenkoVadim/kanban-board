@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { useAppSelector } from '@/hooks';
 import FormStage from '@/components/forms/stage/stage';
 import { Stage } from '@/model/stage';
-import { addStage } from '@/store/stage';
+import { addStage, updateStage } from '@/store/stage';
 
 const cx = classNames.bind(styles);
 
@@ -19,7 +19,7 @@ export default function StageModal(): JSX.Element {
   };
 
   const handleSubmit = (data: Stage): void => {
-    dispatch(addStage(data));
+    dispatch(stage ? updateStage(data) : addStage(data));
     dispatch(close());
   };
 
@@ -30,9 +30,8 @@ export default function StageModal(): JSX.Element {
       isOpen={isOpen}>
       <div className={cx('stage')}>
         <FormStage
-          stage={stage ? stage : new Stage()}
-          onSubmit={handleSubmit}
-        />
+          stage={stage}
+          onSubmit={handleSubmit} />
       </div>
     </Modal>
   );

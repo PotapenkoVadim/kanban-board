@@ -11,20 +11,33 @@ const cx = classNames.bind(styles);
 
 export default function KanbanTemplateColumn({
   stage,
-  handleAction
+  handleUpdateAction,
+  handleRemoveAction
 }: {
   stage: Stage;
-  handleAction: (stage: Stage) => void;
+  handleUpdateAction: (stage: Stage) => void;
+  handleRemoveAction: (stage: Stage) => void;
 }): JSX.Element {
   const menu = [
     {
       id: 1,
       node: (
         <Button
-          onClick={() => handleAction(stage)}
+          onClick={() => handleUpdateAction(stage)}
           variant={ButtonVariant.LINK}
         >
           Update stage
+        </Button>
+      )
+    },
+    {
+      id: 2,
+      node: (
+        <Button
+          onClick={() => handleRemoveAction(stage)}
+          variant={ButtonVariant.LINK}
+        >
+          Remove stage
         </Button>
       )
     }

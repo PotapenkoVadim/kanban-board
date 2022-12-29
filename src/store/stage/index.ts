@@ -12,11 +12,34 @@ const stageSlice = createSlice({
   initialState,
   reducers: {
     addStage(state, action: PayloadAction<Stage>): void {
-      state.items.push(action.payload);
+      const newStages = state.items.concat(action.payload);
+
+      Object.assign(state, { items: newStages });
+    },
+    updateStage(state, action: PayloadAction<Stage>) {
+      const updatedStages = [...state.items].map((item) => {
+        if (item.id === action.payload.id) {
+          return {
+            ...item,
+            ...action.payload
+          };
+        }
+
+        return item;
+      });
+
+      Object.assign(state, { items: updatedStages });
+    },
+    removeStage(state, action: PayloadAction<Stage>): void {
+      const filteredStages = state.items.filter(
+        (item) => item.id !== action.payload.id
+      );
+
+      Object.assign(state, { items: filteredStages });
     }
   }
 });
 
-export const { addStage } = stageSlice.actions;
+export const { addStage, removeStage, updateStage } = stageSlice.actions;
 
 export default stageSlice.reducer;
