@@ -1,4 +1,4 @@
-export class Label {
+export class Stage {
   public id: number;
 
   public title: string;

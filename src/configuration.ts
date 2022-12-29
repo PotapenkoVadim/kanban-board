@@ -1,6 +1,6 @@
 export const configuration = {
   logoName: 'Shaurma.',
-  defaultLabels: [
+  defaultStages: [
     {
       id: 1,
       title: 'Friends',

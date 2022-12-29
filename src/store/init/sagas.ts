@@ -1,5 +1,5 @@
 import { takeEvery, put, PutEffect } from 'redux-saga/effects';
-import { initApp } from '@/store/init/init-slice';
+import { initApp } from '@/store/init';
 import { initSagaActions } from './saga-actions';
 import { SagaIterator } from 'redux-saga';
 

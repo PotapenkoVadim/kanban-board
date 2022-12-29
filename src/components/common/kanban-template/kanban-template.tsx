@@ -1,4 +1,4 @@
-import { Label } from '@/model/label';
+import { Stage } from '@/model/stage';
 import classNames from 'classnames/bind';
 import styles from './kanban-template.module.scss';
 import KanbanTemplateColumn from './_column';
@@ -7,20 +7,20 @@ import KanbanTemplateHeader from './_header';
 const cx = classNames.bind(styles);
 
 export default function KanbanTemplate({
-  labels
+  stages
 }: {
-  labels: Array<Label>;
+  stages: Array<Stage>;
 }): JSX.Element {
   return (
     <div className={cx('kanban')}>
       <KanbanTemplateHeader />
 
       <div className={cx('kanban__content')}>
-        {labels?.length > 0 &&
-          labels.map((item) => (
+        {stages?.length > 0 &&
+          stages.map((item) => (
             <KanbanTemplateColumn
               key={item.id}
-              label={item} />
+              stage={item} />
           ))}
 
         <div className={cx('kanban__emptyslot')} />
