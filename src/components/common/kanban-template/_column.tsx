@@ -26,7 +26,9 @@ export default function KanbanTemplateColumn({
   const [users, setUsers] = useState<Array<UserModel>>([]);
 
   useEffect(() => {
-    const stageUsers = initialUsers.filter((item) => stage.userIDs.includes(item.id));
+    const stageUsers = initialUsers.filter(
+      (item) => stage.userIDs && stage.userIDs.includes(item.id)
+    );
 
     setUsers(stageUsers);
   }, [stage, initialUsers]);

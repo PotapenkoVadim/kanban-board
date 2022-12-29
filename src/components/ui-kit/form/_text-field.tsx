@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import classNames from 'classnames/bind';
 import { FormikValues, FormikProps } from 'formik';
 import { DetailedHTMLProps, InputHTMLAttributes } from 'react';
@@ -23,9 +24,18 @@ export default function FormTextField({
   error,
   ...props
 }: FormTextInputProps): JSX.Element {
+  const fieldRef = useRef<HTMLInputElement>(null);
+
+  const focusToField = (): void => {
+    if (fieldRef.current) {
+      fieldRef.current.focus();
+    }
+  };
+
   return (
     <div className={cx(['form__control', className])}>
       <input
+        ref={fieldRef}
         value={value}
         className={cx({
           form__field: true,
@@ -34,7 +44,11 @@ export default function FormTextField({
         {...props}
       />
 
-      <span className={cx('form__label')}>{placeholder}</span>
+      <span
+        onClick={focusToField}
+        className={cx('form__label')}>
+        {placeholder}
+      </span>
 
       <FormError errorText={error} />
     </div>
