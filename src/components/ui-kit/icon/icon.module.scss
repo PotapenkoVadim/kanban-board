@@ -1,0 +1,12 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.icon { display: block; -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center;
+  width: 20px; height: 20px;
+
+  &__settings { -webkit-mask-image: url(../../../public/icons/settings.svg); }
+
+  &_white { background-color: $white; }
+  &_black { background-color: $black; }
+  &_primary { background-color: $primary; }
+}

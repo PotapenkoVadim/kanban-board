@@ -1,0 +1,21 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.button { border: 1px solid $light; outline: none; background-color: $white; cursor: pointer;
+  padding: 6px 17px; border-radius: 3px;
+  &__icon { border-radius: 50%; padding: 6px; box-shadow: 1px 1px 7px 1px $extra-light; border-color: $extra-light;
+    &:active { box-shadow: inset 2px 2px 5px $light; }
+  }
+
+  &__primary { background-color: 	#0066CC; color: $white;  box-shadow: 1px 1px 7px 1px $extra-light;
+    &:active { box-shadow: inset 1px 1px 5px $black; color: $extra-light; }
+  }
+
+  &__secondary { border-color: $extra-light; color: $primary; box-shadow: 1px 1px 7px 1px $extra-light;
+    &:active { box-shadow: inset 2px 2px 5px $light; }
+  }
+
+  &__link { border: none; color: $primary;
+    &:hover { text-decoration: underline; }
+  }
+}
