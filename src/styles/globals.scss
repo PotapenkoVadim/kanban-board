@@ -3,3 +3,7 @@
 
 * { box-sizing: border-box; padding: 0; margin: 0; }
 body { font-family: var(--mukta-font); font-weight: 400; font-size: $font; color: $black; }
+
+.select__control { border: none !important; padding: 0 !important; outline: none !important; box-shadow: none !important;
+  &:hover, &:active { border: none !important; }
+}

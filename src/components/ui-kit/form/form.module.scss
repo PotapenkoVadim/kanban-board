@@ -13,4 +13,6 @@
   &__error { position: absolute; bottom: -15px; left: 2px; font-size: 0.65rem; color: $attention;
     letter-spacing: 1px; font-weight: 700;
   }
+
+  &__select-control { padding: 2px 0; }
 }

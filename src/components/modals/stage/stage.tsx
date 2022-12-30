@@ -12,26 +12,29 @@ const cx = classNames.bind(styles);
 
 export default function StageModal(): JSX.Element {
   const dispatch = useDispatch();
-  const { isOpen, title, stage } = useAppSelector((state) => state.stageModal);
+  const { stageModal, user } = useAppSelector((state) => state);
 
   const closeModal = (): void => {
     dispatch(close());
   };
 
   const handleSubmit = (data: StageModel): void => {
-    dispatch(stage ? updateStage(data) : addStage(data));
+    dispatch(stageModal.stage ? updateStage(data) : addStage(data));
     dispatch(close());
   };
 
   return (
     <Modal
-      title={title}
+      title={stageModal.title}
       onClose={closeModal}
-      isOpen={isOpen}>
+      isOpen={stageModal.isOpen}
+    >
       <div className={cx('stage')}>
         <FormStage
-          stage={stage}
-          onSubmit={handleSubmit} />
+          users={user.items}
+          stage={stageModal.stage}
+          onSubmit={handleSubmit}
+        />
       </div>
     </Modal>
   );

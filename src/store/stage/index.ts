@@ -12,7 +12,15 @@ const stageSlice = createSlice({
   initialState,
   reducers: {
     addStage(state, action: PayloadAction<StageModel>): void {
-      const newStages = state.items.concat(action.payload);
+      const stages = state.items.map((item) => {
+        return {
+          ...item,
+          userIDs: item.userIDs.filter(
+            (userID) => !action.payload.userIDs.includes(userID)
+          )
+        };
+      });
+      const newStages = stages.concat(action.payload);
 
       Object.assign(state, { items: newStages });
     },
