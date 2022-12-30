@@ -9,10 +9,12 @@ const cx = classNames.bind(styles);
 
 export default function UserActions({
   onMoveToStage,
-  onRemoveUser
+  onRemoveUser,
+  onUpdateUser
 }: {
   onMoveToStage: () => void;
   onRemoveUser: () => void;
+  onUpdateUser: () => void;
 }): JSX.Element {
   const menu = [
     {
@@ -27,6 +29,16 @@ export default function UserActions({
     },
     {
       id: 2,
+      node: (
+        <Button
+          onClick={onUpdateUser}
+          variant={ButtonVariant.LINK}>
+          Update user
+        </Button>
+      )
+    },
+    {
+      id: 3,
       node: (
         <Button
           onClick={onRemoveUser}

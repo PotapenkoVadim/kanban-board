@@ -86,6 +86,16 @@ export default function KanbanTemplateColumn({
     dispatch(closeConfirmationModal());
   };
 
+  const openUpdateUser = (user: UserModel): void => {
+    dispatch(
+      openUserModal({
+        title: 'Update new user',
+        user,
+        stageID: stage.id
+      })
+    );
+  };
+
   return (
     <div className={cx('kanban__column')}>
       <div className={cx('kanban__column-header')}>
@@ -102,6 +112,7 @@ export default function KanbanTemplateColumn({
         {users.length > 0 &&
           users.map((user) => (
             <User
+              updateUser={openUpdateUser}
               removeUser={openRemoveUser}
               moveToStage={moveToStage}
               key={user.id}
