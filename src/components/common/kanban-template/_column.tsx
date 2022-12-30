@@ -10,6 +10,12 @@ import { open as openUserModal } from '@/store/modals/user';
 import { useDispatch } from 'react-redux';
 import { open as openBindUserModal } from '@/store/modals/bind-user';
 import { open as openBindStageModal } from '@/store/modals/bind-stage';
+import {
+  open as openConfirmationModal,
+  close as closeConfirmationModal
+} from '@/store/modals/confirmation';
+import { removeUser as removeUserFromStore } from '@/store/user';
+import { unbindUser } from '@/store/stage';
 
 const cx = classNames.bind(styles);
 
@@ -65,6 +71,21 @@ export default function KanbanTemplateColumn({
     );
   };
 
+  const openRemoveUser = (user: UserModel): void => {
+    dispatch(
+      openConfirmationModal({
+        title: 'You want to delete the user?',
+        acceptAction: () => removeUser(user)
+      })
+    );
+  };
+
+  const removeUser = (user: UserModel): void => {
+    dispatch(removeUserFromStore({ userID: user.id }));
+    dispatch(unbindUser({ userID: user.id }));
+    dispatch(closeConfirmationModal());
+  };
+
   return (
     <div className={cx('kanban__column')}>
       <div className={cx('kanban__column-header')}>
@@ -81,9 +102,11 @@ export default function KanbanTemplateColumn({
         {users.length > 0 &&
           users.map((user) => (
             <User
+              removeUser={openRemoveUser}
               moveToStage={moveToStage}
               key={user.id}
-              user={user} />
+              user={user}
+            />
           ))}
       </div>
     </div>

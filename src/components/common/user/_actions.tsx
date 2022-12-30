@@ -8,18 +8,30 @@ import styles from './user.module.scss';
 const cx = classNames.bind(styles);
 
 export default function UserActions({
-  onClick
+  onMoveToStage,
+  onRemoveUser
 }: {
-  onClick: () => void;
+  onMoveToStage: () => void;
+  onRemoveUser: () => void;
 }): JSX.Element {
   const menu = [
     {
       id: 1,
       node: (
         <Button
-          onClick={onClick}
+          onClick={onMoveToStage}
           variant={ButtonVariant.LINK}>
           Move to stage
+        </Button>
+      )
+    },
+    {
+      id: 2,
+      node: (
+        <Button
+          onClick={onRemoveUser}
+          variant={ButtonVariant.LINK}>
+          Remove user
         </Button>
       )
     }

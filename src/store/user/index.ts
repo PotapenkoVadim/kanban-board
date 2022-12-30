@@ -15,10 +15,17 @@ const userSlice = createSlice({
       const newUsers = state.items.concat(action.payload);
 
       Object.assign(state, { items: newUsers });
+    },
+    removeUser(state, action: PayloadAction<{ userID: string }>): void {
+      const newUsers = state.items.filter(
+        (item) => item.id !== action.payload.userID
+      );
+
+      Object.assign(state, { items: newUsers });
     }
   }
 });
 
-export const { addUser } = userSlice.actions;
+export const { addUser, removeUser } = userSlice.actions;
 
 export default userSlice.reducer;

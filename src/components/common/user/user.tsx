@@ -10,13 +10,19 @@ const cx = classNames.bind(styles);
 
 export default function User({
   user,
-  moveToStage
+  moveToStage,
+  removeUser
 }: {
   user: UserModel;
   moveToStage: (user: UserModel) => void;
+  removeUser: (user: UserModel) => void;
 }): JSX.Element {
   const handleMoveToStage = (): void => {
     moveToStage(user);
+  };
+
+  const handleRemoveUser = (): void => {
+    removeUser(user);
   };
 
   return (
@@ -30,7 +36,10 @@ export default function User({
         <div>{user.getFullName()}</div>
       </div>
 
-      <UserActions onClick={handleMoveToStage} />
+      <UserActions
+        onRemoveUser={handleRemoveUser}
+        onMoveToStage={handleMoveToStage}
+      />
     </div>
   );
 }
