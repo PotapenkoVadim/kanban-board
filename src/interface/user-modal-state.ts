@@ -3,5 +3,5 @@ import ModalState from './modal-state';
 
 export default interface UserModalState extends ModalState {
   user?: UserModel;
-  stageID?: number;
+  stageID?: string;
 }

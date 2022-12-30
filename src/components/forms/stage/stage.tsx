@@ -25,7 +25,7 @@ export default function FormStage({
     onSubmit: (values) => onSubmit(
       stage
         ? { ...stage, ...values }
-        : new StageModel({ ...values, id: generateID() })
+        : new StageModel({ ...values, id: generateID(), userIDs: [] })
     ),
     validationSchema
   });

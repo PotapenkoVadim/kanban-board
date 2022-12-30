@@ -46,7 +46,7 @@ export default function KanbanTemplateColumnActions({
         <Button
           onClick={onAddUser}
           variant={ButtonVariant.LINK}>
-          Add new user
+          Create new user
         </Button>
       )
     }

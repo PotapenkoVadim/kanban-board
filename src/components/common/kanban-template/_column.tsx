@@ -39,7 +39,7 @@ export default function KanbanTemplateColumn({
   const openAddUser = (): void => {
     dispatch(
       openUserModal({
-        title: 'Add new user',
+        title: 'Create new user',
         stageID: stage.id
       })
     );

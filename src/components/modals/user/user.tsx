@@ -3,6 +3,7 @@ import Modal from '@/components/ui-kit/modal/modal';
 import { useAppSelector } from '@/hooks';
 import { UserModel } from '@/model/user';
 import { close } from '@/store/modals/user';
+import { bindUserToStage } from '@/store/stage';
 import { addUser } from '@/store/user';
 import classNames from 'classnames/bind';
 import { useDispatch } from 'react-redux';
@@ -18,10 +19,9 @@ export default function UserModal(): JSX.Element {
     dispatch(close());
   };
 
-  const handleSubmit = (data: Partial<UserModel>): void => {
-    console.log('S: ', stageID);
-    console.log('U: ', data);
-    // dispatch(addUser(data));
+  const handleSubmit = (data: UserModel): void => {
+    dispatch(addUser(data));
+    dispatch(bindUserToStage({ stageID, userID: data.id }));
     dispatch(close());
   };
 

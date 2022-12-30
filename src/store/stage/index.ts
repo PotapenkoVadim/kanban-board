@@ -36,10 +36,28 @@ const stageSlice = createSlice({
       );
 
       Object.assign(state, { items: filteredStages });
+    },
+    bindUserToStage(
+      state,
+      action: PayloadAction<{ stageID: string; userID: string }>
+    ) {
+      const stages = state.items.map((item) => {
+        if (item.id === action.payload.stageID) {
+          return {
+            ...item,
+            userIDs: [...item.userIDs, action.payload.userID]
+          };
+        }
+
+        return item;
+      });
+
+      Object.assign(state, { items: stages });
     }
   }
 });
 
-export const { addStage, removeStage, updateStage } = stageSlice.actions;
+export const { addStage, removeStage, updateStage, bindUserToStage } =
+  stageSlice.actions;
 
 export default stageSlice.reducer;
