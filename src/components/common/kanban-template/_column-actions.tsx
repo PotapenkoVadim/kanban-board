@@ -10,10 +10,12 @@ const cx = classNames.bind(styles);
 export default function KanbanTemplateColumnActions({
   onUpdateStage,
   onRemoveStage,
+  onCreateUser,
   onAddUser
 }: {
   onUpdateStage: () => void;
   onRemoveStage: () => void;
+  onCreateUser: () => void;
   onAddUser: () => void;
 }): JSX.Element {
   const settingsMenu = [
@@ -44,9 +46,19 @@ export default function KanbanTemplateColumnActions({
       id: 1,
       node: (
         <Button
-          onClick={onAddUser}
+          onClick={onCreateUser}
           variant={ButtonVariant.LINK}>
           Create new user
+        </Button>
+      )
+    },
+    {
+      id: 2,
+      node: (
+        <Button
+          onClick={onAddUser}
+          variant={ButtonVariant.LINK}>
+          Add user
         </Button>
       )
     }

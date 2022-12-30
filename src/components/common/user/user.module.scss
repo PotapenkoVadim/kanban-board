@@ -5,4 +5,5 @@
   &__avatar { max-width: 42px; max-height: 42px; border-radius: 50%; }
   &__avatar, &__actions { flex: 1; }
   &__details { flex: 2; font-size: 0.9rem; font-weight: 700; }
+  &__actions { display: flex; justify-content: flex-end; padding-right: 5px; }
 }

@@ -2,3 +2,16 @@
   display: flex;
   align-items: center;
 }
+
+@mixin modal-common {
+  margin: 35px 0;
+  padding: 0 15px;
+  display: flex;
+  justify-content: space-around;
+  &__button { flex: 1; padding: 15px 20px; }
+}
+
+@mixin form-common {
+  margin-top: 35px;
+  &__button, &__field { margin-top: 15px; }
+}

@@ -15,6 +15,8 @@ import { StageModel } from '@/model/stage';
 import ConfirmationModal from '@/components/modals/confirmation/confirmation';
 import { removeStage as removeStageFromStore } from '@/store/stage';
 import UserModal from '@/components/modals/user/user';
+import BindUserModal from '@/components/modals/bind-user/bind-user';
+import BindStageModal from '@/components/modals/bind-stage/bind-stage';
 
 export default function Home(): JSX.Element {
   const dispatch = useDispatch();
@@ -62,6 +64,8 @@ export default function Home(): JSX.Element {
       <StageModal />
       <ConfirmationModal />
       <UserModal />
+      <BindUserModal />
+      <BindStageModal />
     </Layout>
   );
 }

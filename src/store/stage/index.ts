@@ -50,6 +50,15 @@ const stageSlice = createSlice({
       action: PayloadAction<{ stageID: string; userID: string }>
     ) {
       const stages = state.items.map((item) => {
+        return {
+          ...item,
+          userIDs: item.userIDs.filter(
+            (userID) => action.payload.userID !== userID
+          )
+        };
+      });
+
+      const newStages = stages.map((item) => {
         if (item.id === action.payload.stageID) {
           return {
             ...item,
@@ -60,7 +69,7 @@ const stageSlice = createSlice({
         return item;
       });
 
-      Object.assign(state, { items: stages });
+      Object.assign(state, { items: newStages });
     }
   }
 });

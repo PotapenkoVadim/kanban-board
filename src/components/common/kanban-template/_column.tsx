@@ -8,6 +8,8 @@ import { UserModel } from '@/model/user';
 import KanbanTemplateColumnActions from './_column-actions';
 import { open as openUserModal } from '@/store/modals/user';
 import { useDispatch } from 'react-redux';
+import { open as openBindUserModal } from '@/store/modals/bind-user';
+import { open as openBindStageModal } from '@/store/modals/bind-stage';
 
 const cx = classNames.bind(styles);
 
@@ -36,11 +38,29 @@ export default function KanbanTemplateColumn({
   const updateAction = (): void => handleUpdateAction(stage);
   const removeAction = (): void => handleRemoveAction(stage);
 
-  const openAddUser = (): void => {
+  const openCreateUser = (): void => {
     dispatch(
       openUserModal({
         title: 'Create new user',
         stageID: stage.id
+      })
+    );
+  };
+
+  const moveToStage = (user: UserModel): void => {
+    dispatch(
+      openBindUserModal({
+        title: 'Move user to stage',
+        user
+      })
+    );
+  };
+
+  const openAddUserToStage = (): void => {
+    dispatch(
+      openBindStageModal({
+        title: 'Add user to stage',
+        stage
       })
     );
   };
@@ -51,16 +71,20 @@ export default function KanbanTemplateColumn({
         <span className={cx('kanban__column-title')}>{stage.title}</span>
 
         <KanbanTemplateColumnActions
-          onAddUser={openAddUser}
+          onAddUser={openAddUserToStage}
+          onCreateUser={openCreateUser}
           onRemoveStage={removeAction}
           onUpdateStage={updateAction}
         />
       </div>
       <div className={cx('kanban__column-content')}>
         {users.length > 0 &&
-          users.map((user) => <User
-            key={user.id}
-            user={user} />)}
+          users.map((user) => (
+            <User
+              moveToStage={moveToStage}
+              key={user.id}
+              user={user} />
+          ))}
       </div>
     </div>
   );

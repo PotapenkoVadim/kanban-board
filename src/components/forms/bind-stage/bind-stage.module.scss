@@ -1,4 +1,4 @@
 @import '../../../styles/variables';
 @import '../../../styles/mixins';
 
-.confirmation { @include modal-common; }
+.bind-stage { @include form-common; }

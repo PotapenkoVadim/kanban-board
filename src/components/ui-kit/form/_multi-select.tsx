@@ -1,4 +1,9 @@
-import { DetailedHTMLProps, SelectHTMLAttributes, useState } from 'react';
+import {
+  DetailedHTMLProps,
+  SelectHTMLAttributes,
+  useRef,
+  useState
+} from 'react';
 import Select from 'react-select';
 import classNames from 'classnames/bind';
 import { FormikProps, FormikValues } from 'formik';
@@ -17,7 +22,7 @@ type FormTextInputProps<T = FormikValues> = DetailedHTMLProps<
   isMulti?: boolean;
   options: Array<SelectOption>;
   selectClassName?: string;
-  handleChange?: (newValue: Array<string>) => void;
+  handleChange?: (newValue: string | Array<string>) => void;
 };
 
 export default function FormMultiSelect({
@@ -31,20 +36,32 @@ export default function FormMultiSelect({
   value,
   error
 }: FormTextInputProps): JSX.Element {
+  const selectRef = useRef(null);
   const [isActive, setIsActive] = useState(false);
 
   const setActive = (): void => setIsActive(true);
   const cancelActive = (): void => setIsActive(false);
 
-  const handleSelect = (data: Array<SelectOption>): void => {
-    const values = data.map((item) => item.value);
+  const handleSelect = (data: SelectOption | Array<SelectOption>): void => {
+    if (isMulti) {
+      const values = (data as Array<SelectOption>).map((item) => item.value);
 
-    handleChange(values);
+      handleChange(values);
+    } else {
+      const values = (data as SelectOption).value;
+
+      handleChange(values);
+    }
+  };
+
+  const focusToField = (): void => {
+    selectRef.current.focus();
   };
 
   return (
     <div className={cx(['form__control', 'form__select-control', className])}>
       <Select
+        ref={selectRef}
         isMulti={isMulti}
         onChange={handleSelect}
         name={name}
@@ -55,14 +72,20 @@ export default function FormMultiSelect({
         onBlur={cancelActive}
         className={cx({
           form__select: true,
-          form__field_active: isActive || (value as Array<string>).length > 0,
+          form__field_active:
+            isActive ||
+            (isMulti ? (value as Array<string>).length > 0 : Boolean(value)),
           [selectClassName]: !!selectClassName
         })}
         classNamePrefix='select'
         placeholder={''}
       />
 
-      <span className={cx('form__label')}>{placeholder}</span>
+      <span
+        onClick={focusToField}
+        className={cx('form__label')}>
+        {placeholder}
+      </span>
 
       <FormError errorText={error} />
     </div>

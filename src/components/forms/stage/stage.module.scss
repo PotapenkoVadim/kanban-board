@@ -1,6 +1,4 @@
 @import '../../../styles/variables';
 @import '../../../styles/mixins';
 
-.stage { margin-top: 35px;
-  &__button, &__field { margin-top: 15px; }
-}
+.stage { @include form-common; }
