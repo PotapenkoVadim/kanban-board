@@ -16,6 +16,7 @@ import {
 } from '@/store/modals/confirmation';
 import { removeUser as removeUserFromStore } from '@/store/user';
 import { unbindUser } from '@/store/stage';
+import { useDrop } from 'react-dnd';
 
 const cx = classNames.bind(styles);
 
@@ -32,6 +33,11 @@ export default function KanbanTemplateColumn({
   const { items: initialUsers } = useAppSelector((state) => state.user);
 
   const [users, setUsers] = useState<Array<UserModel>>([]);
+
+  const [, drop] = useDrop({
+    accept: 'userCard',
+    drop: () => ({ stage })
+  });
 
   useEffect(() => {
     const stageUsers = initialUsers.filter(
@@ -97,7 +103,9 @@ export default function KanbanTemplateColumn({
   };
 
   return (
-    <div className={cx('kanban__column')}>
+    <div
+      ref={drop}
+      className={cx('kanban__column')}>
       <div className={cx('kanban__column-header')}>
         <span className={cx('kanban__column-title')}>{stage.title}</span>
 

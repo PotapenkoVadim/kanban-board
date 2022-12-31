@@ -17,6 +17,8 @@ import { removeStage as removeStageFromStore } from '@/store/stage';
 import UserModal from '@/components/modals/user/user';
 import BindUserModal from '@/components/modals/bind-user/bind-user';
 import BindStageModal from '@/components/modals/bind-stage/bind-stage';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 export default function Home(): JSX.Element {
   const dispatch = useDispatch();
@@ -54,11 +56,13 @@ export default function Home(): JSX.Element {
       <Container>
         {isInit && <p>Store Works!</p>}
 
-        <KanbanTemplate
-          removeStage={openRemoveStage}
-          manageStage={openManageStage}
-          stages={stage.items}
-        />
+        <DndProvider backend={HTML5Backend}>
+          <KanbanTemplate
+            removeStage={openRemoveStage}
+            manageStage={openManageStage}
+            stages={stage.items}
+          />
+        </DndProvider>
       </Container>
 
       <StageModal />
