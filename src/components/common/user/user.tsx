@@ -33,12 +33,14 @@ export default function User({
     }),
     end: (_, monitor: DragSourceMonitor): void => {
       const dropResult = monitor.getDropResult<{ stage: StageModel }>();
-      dispatch(
-        bindUserToStage({
-          stageID: dropResult.stage.id,
-          userID: user.id
-        })
-      );
+      if (dropResult) {
+        dispatch(
+          bindUserToStage({
+            stageID: dropResult.stage.id,
+            userID: user.id
+          })
+        );
+      }
     }
   });
 
