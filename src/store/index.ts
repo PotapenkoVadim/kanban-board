@@ -1,7 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
 import stageReducer from './stage';
-import initReducer from './init';
 import stageModalReducer from './modals/stage';
 import confirmationModalReducer from './modals/confirmation';
 import bindUserModalReducer from './modals/bind-user';
@@ -14,7 +13,6 @@ const sagaMiddleware = createSagaMiddleware();
 
 export const store = configureStore({
   reducer: {
-    init: initReducer,
     stage: stageReducer,
     user: userReducer,
     stageModal: stageModalReducer,
