@@ -8,7 +8,8 @@ import SelectOption from '@/interface/select-option';
 
 const cx = classNames.bind(styles);
 
-type FormTextInputProps<T = FormikValues, R = string | number> = { // TODO: need a more universal solution (R = string | number)
+type FormTextInputProps<T = FormikValues, R = string | number> = {
+  // TODO: need a more universal solution (R = string | number)
   formik?: FormikProps<T>;
   error?: string;
   isMulti?: boolean;
@@ -70,7 +71,9 @@ export default function FormMultiSelect({
           form__select: true,
           form__field_active:
             isActive ||
-            (isMulti ? (value as Array<string | number>).length > 0 : Boolean(value)),
+            (isMulti
+              ? (value as Array<string | number>).length > 0
+              : Boolean(value)),
           [selectClassName]: !!selectClassName
         })}
         classNamePrefix='select'
