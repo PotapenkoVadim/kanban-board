@@ -3,7 +3,6 @@ import classNames from 'classnames/bind';
 import { UserModel } from '@/model/user';
 import styles from './user.module.scss';
 import { useFormik } from 'formik';
-import { generateID } from '@/utils';
 import { UserSchema } from '@/forms/user';
 import Button from '@/components/ui-kit/button/button';
 import { ButtonVariant } from '@/enums';
@@ -25,7 +24,7 @@ export default function FormUser({
     onSubmit: (values) => onSubmit(
       user
         ? { ...user, ...values }
-        : new UserModel({ ...values, id: generateID() })
+        : new UserModel({ ...values, id: Date.now() })
     ),
     validationSchema
   });
@@ -44,12 +43,32 @@ export default function FormUser({
       />
 
       <FormTextField
-        name='surname'
-        error={formik.errors.surname}
-        value={formik.values.surname}
+        name='email'
+        type='email'
+        error={formik.errors.email}
+        value={formik.values.email}
         onChange={formik.handleChange}
         className={cx('user__field')}
-        placeholder='Surname'
+        placeholder='Email'
+      />
+
+      <FormTextField
+        name='phone'
+        type='tel'
+        error={formik.errors.phone}
+        value={formik.values.phone}
+        onChange={formik.handleChange}
+        className={cx('user__field')}
+        placeholder='Phone'
+      />
+
+      <FormTextField
+        name='website'
+        error={formik.errors.website}
+        value={formik.values.website}
+        onChange={formik.handleChange}
+        className={cx('user__field')}
+        placeholder='Website'
       />
 
       <Button

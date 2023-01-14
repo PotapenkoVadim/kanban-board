@@ -71,7 +71,7 @@ export default function User({
           alt='person' />
 
         <div className={cx('user__details')}>
-          <div>{user.getFullName()}</div>
+          <div>{user.name}</div>
         </div>
 
         <UserActions

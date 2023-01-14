@@ -3,11 +3,15 @@ import { UserModel } from '@/model/user';
 
 export class UserSchema {
   public name: string;
-  public surname: string;
+  public email: string;
+  public phone?: string;
+  public website?: string;
 
-  constructor(stage?: UserModel | null) {
-    this.name = stage?.name ?? '';
-    this.surname = stage?.surname ?? '';
+  constructor(user?: UserModel | null) {
+    this.name = user?.name ?? '';
+    this.email = user?.email ?? '';
+    this.phone = user?.phone ?? '';
+    this.website = user?.website ?? '';
   }
 
   public static getValidationSchema(): Yup.SchemaOf<UserSchema> {
@@ -15,8 +19,10 @@ export class UserSchema {
       .shape({
         name: Yup.string()
           .required('Name is required'),
-        surname: Yup.string()
-          .required('Surname is required')
+        email: Yup.string()
+          .required('Email is required'),
+        phone: Yup.string(),
+        website: Yup.string()
       });
   }
 }

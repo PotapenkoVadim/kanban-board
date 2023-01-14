@@ -1,9 +1,4 @@
-import {
-  DetailedHTMLProps,
-  SelectHTMLAttributes,
-  useRef,
-  useState
-} from 'react';
+import { useRef, useState } from 'react';
 import Select from 'react-select';
 import classNames from 'classnames/bind';
 import { FormikProps, FormikValues } from 'formik';
@@ -13,16 +8,17 @@ import SelectOption from '@/interface/select-option';
 
 const cx = classNames.bind(styles);
 
-type FormTextInputProps<T = FormikValues> = DetailedHTMLProps<
-  SelectHTMLAttributes<HTMLSelectElement>,
-  HTMLSelectElement
-> & {
+type FormTextInputProps<T = FormikValues, R = string | number> = { // TODO: need a more universal solution (R = string | number)
   formik?: FormikProps<T>;
   error?: string;
   isMulti?: boolean;
   options: Array<SelectOption>;
   selectClassName?: string;
-  handleChange?: (newValue: string | Array<string>) => void;
+  handleChange?: (newValue: R | Array<R>) => void;
+  placeholder?: string;
+  className?: string;
+  name?: string;
+  value?: R | Array<R>;
 };
 
 export default function FormMultiSelect({
@@ -74,7 +70,7 @@ export default function FormMultiSelect({
           form__select: true,
           form__field_active:
             isActive ||
-            (isMulti ? (value as Array<string>).length > 0 : Boolean(value)),
+            (isMulti ? (value as Array<string | number>).length > 0 : Boolean(value)),
           [selectClassName]: !!selectClassName
         })}
         classNamePrefix='select'

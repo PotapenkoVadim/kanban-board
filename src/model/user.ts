@@ -1,13 +1,20 @@
+import { AddressModel } from './address';
+import { CompanyModel } from './company';
+
 export class UserModel {
-  public id: string;
+  public id: number;
 
   public name: string;
 
-  public surname: string;
+  public email?: string;
 
-  public getFullName?(): string {
-    return `${this.surname} ${this.name}`;
-  }
+  public address?: AddressModel;
+
+  public phone?: string;
+
+  public website?: string;
+
+  public company?: CompanyModel;
 
   constructor(model: Partial<UserModel> = {}) {
     Object.assign(this, model);

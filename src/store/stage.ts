@@ -47,7 +47,7 @@ const stageSlice = createSlice({
     },
     bindUserToStage(
       state,
-      action: PayloadAction<{ stageID: string; userID: string }>
+      action: PayloadAction<{ stageID: string; userID: number }>
     ) {
       const stages = state.items.map((item) => {
         return {
@@ -71,7 +71,7 @@ const stageSlice = createSlice({
 
       Object.assign(state, { items: newStages });
     },
-    unbindUser(state, action: PayloadAction<{ userID: string }>): void {
+    unbindUser(state, action: PayloadAction<{ userID: number }>): void {
       const stages = state.items.map((item) => {
         return {
           ...item,

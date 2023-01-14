@@ -3,7 +3,7 @@ import { StageModel } from '@/model/stage';
 
 export class StageSchema {
   public title: string;
-  public userIDs: Array<string>;
+  public userIDs: Array<number>;
 
   constructor(stage?: StageModel | null) {
     this.title = stage?.title ?? '';

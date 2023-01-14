@@ -1,4 +1,4 @@
 export default interface SelectOption {
-  value: string;
+  value: string | number;
   label: string;
 }

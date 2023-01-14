@@ -28,7 +28,7 @@ export default function FormStage({
   useEffect(() => {
     const options = users.map((item) => ({
       value: item.id,
-      label: item.getFullName()
+      label: item.name
     }));
 
     setUserOptions(options);
@@ -47,7 +47,7 @@ export default function FormStage({
     validationSchema
   });
 
-  const changeSelect = (values: Array<string>): void => {
+  const changeSelect = (values: Array<number>): void => {
     formik.setFieldValue('userIDs', values);
   };
 

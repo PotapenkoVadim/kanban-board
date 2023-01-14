@@ -23,7 +23,7 @@ export default function FormBindStage({
   useEffect(() => {
     const options = users.map((item) => ({
       value: item.id,
-      label: item.getFullName()
+      label: item.name
     }));
 
     setUserOptions(options);
