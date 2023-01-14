@@ -1,17 +1,20 @@
-import { configuration } from '@/configuration';
 import UserState from '@/interface/user-state';
 import { UserModel } from '@/model/user';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { HYDRATE } from 'next-redux-wrapper';
 
 const initialState: UserState = {
-  items: configuration.defaultUsers.map((user) => new UserModel(user))
+  items: []
 };
 
 const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    addUser(state, action: PayloadAction<UserModel>): void {
+    initUsers(state, action: PayloadAction<Array<UserModel>>) {
+      Object.assign(state, { items: action.payload });
+    },
+    addUser(state, action: PayloadAction<UserModel | Array<UserModel>>): void {
       const newUsers = state.items.concat(action.payload);
 
       Object.assign(state, { items: newUsers });
@@ -37,9 +40,14 @@ const userSlice = createSlice({
 
       Object.assign(state, { items: newUsers });
     }
+  },
+  extraReducers: (builder) => {
+    builder.addCase(HYDRATE, (state, action: any) => {
+      Object.assign(state, { items: action.payload.user.items });
+    });
   }
 });
 
-export const { addUser, removeUser, updateUser } = userSlice.actions;
+export const { addUser, removeUser, updateUser, initUsers } = userSlice.actions;
 
 export default userSlice.reducer;

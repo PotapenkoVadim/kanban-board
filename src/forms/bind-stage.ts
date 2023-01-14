@@ -1,16 +1,16 @@
 import * as Yup from 'yup';
 
 export class BindStageSchema {
-  public userID: string;
+  public userID: number;
 
   constructor() {
-    this.userID = '';
+    this.userID = null;
   }
 
   public static getValidationSchema(): Yup.SchemaOf<BindStageSchema> {
     return Yup.object()
       .shape({
-        userID: Yup.string()
+        userID: Yup.number()
           .required('User ID is required')
       });
   }

@@ -2,9 +2,32 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { StageModel } from '@/model/stage';
 import StageState from '@/interface/stage-state';
 import { configuration } from '@/configuration';
+import { HYDRATE } from 'next-redux-wrapper';
+
+const defaultStages = configuration.defaultStages;
 
 const initialState: StageState = {
-  items: configuration.defaultStages
+  items: defaultStages
+};
+
+const removeUser = (
+  state: StageState,
+  data: number | Array<number>
+): Array<StageModel> => {
+  const filterUser = (userID: number): boolean => {
+    if (Array.isArray(data)) {
+      return data.includes(userID);
+    } else {
+      return data !== userID;
+    }
+  };
+
+  return state.items.map((item) => {
+    return {
+      ...item,
+      userIDs: item.userIDs.filter(filterUser)
+    };
+  });
 };
 
 const stageSlice = createSlice({
@@ -49,14 +72,7 @@ const stageSlice = createSlice({
       state,
       action: PayloadAction<{ stageID: string; userID: number }>
     ) {
-      const stages = state.items.map((item) => {
-        return {
-          ...item,
-          userIDs: item.userIDs.filter(
-            (userID) => action.payload.userID !== userID
-          )
-        };
-      });
+      const stages = removeUser(state, action.payload.userID);
 
       const newStages = stages.map((item) => {
         if (item.id === action.payload.stageID) {
@@ -71,18 +87,44 @@ const stageSlice = createSlice({
 
       Object.assign(state, { items: newStages });
     },
-    unbindUser(state, action: PayloadAction<{ userID: number }>): void {
-      const stages = state.items.map((item) => {
-        return {
-          ...item,
-          userIDs: item.userIDs.filter(
-            (userID) => action.payload.userID !== userID
-          )
-        };
+    initUsersToStage(
+      state,
+      action: PayloadAction<{ stageID: string; userIDs: Array<number> }>
+    ) {
+      const newStages = state.items.map((item) => {
+        if (item.id === action.payload.stageID) {
+          return {
+            ...item,
+            userIDs: action.payload.userIDs
+          };
+        }
+
+        return item;
       });
+
+      Object.assign(state, { items: newStages });
+    },
+    unbindUser(state, action: PayloadAction<{ userID: number }>): void {
+      const stages = removeUser(state, action.payload.userID);
 
       Object.assign(state, { items: stages });
     }
+  },
+  extraReducers: (builder) => {
+    builder.addCase(HYDRATE, (state, action: any) => {
+      const newStages = state.items.map((item) => {
+        if (item.id === defaultStages[0].id) {
+          return {
+            ...item,
+            userIDs: action.payload.user.items.map((item) => item.id)
+          };
+        }
+
+        return item;
+      });
+
+      Object.assign(state, { items: newStages });
+    });
   }
 });
 
@@ -91,7 +133,8 @@ export const {
   removeStage,
   updateStage,
   bindUserToStage,
-  unbindUser
+  unbindUser,
+  initUsersToStage
 } = stageSlice.actions;
 
 export default stageSlice.reducer;

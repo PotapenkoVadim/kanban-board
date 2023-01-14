@@ -4,7 +4,7 @@ import type { AppProps } from 'next/app';
 import { Mukta } from '@next/font/google';
 import Head from 'next/head';
 import favicon from '@/public/favicon.ico';
-import { store } from '@/store/index';
+import { wrapper } from '@/store/index';
 
 const muktaFont = Mukta({
   variable: '--mukta-font',
@@ -12,6 +12,8 @@ const muktaFont = Mukta({
 });
 
 export default function App({ Component, pageProps }: AppProps): JSX.Element {
+  const { store, props } = wrapper.useWrappedStore(pageProps);
+
   return (
     <>
       <style
@@ -32,7 +34,7 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
       </Head>
 
       <Provider store={store}>
-        <Component {...pageProps} />
+        <Component {...props} />
       </Provider>
     </>
   );
